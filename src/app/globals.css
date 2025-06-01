@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 27 100% 87%; /* Light Orange - #FFD9BD */
+    --foreground: 24 10% 10%; /* Darker color for text on light orange */
+
+    --card: 27 100% 92%; /* Slightly darker/lighter shade of background for cards */
+    --card-foreground: 24 10% 10%;
+
+    --popover: 27 100% 92%;
+    --popover-foreground: 24 10% 10%;
+
+    --primary: 24 100% 55%; /* Vibrant Orange - #FF731D */
+    --primary-foreground: 0 0% 100%; /* White for text on primary */
+
+    --secondary: 38 100% 70%; /* Lighter Yellow-Orange for secondary elements */
+    --secondary-foreground: 24 10% 10%;
+
+    --muted: 30 80% 80%; /* Muted orange tone */
+    --muted-foreground: 24 20% 30%;
+
+    --accent: 38 100% 52%; /* Yellow-Orange - #FF9F0A */
+    --accent-foreground: 0 0% 100%; /* White for text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 24 100% 75%; /* Border color related to primary/background */
+    --input: 24 100% 80%; /* Input background */
+    --ring: 24 100% 55%; /* Ring color to match primary */
+
+    --chart-1: 24 100% 55%;
+    --chart-2: 38 100% 52%;
+    --chart-3: 15 90% 60%;
+    --chart-4: 45 85% 65%;
+    --chart-5: 10 75% 55%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific theme adjustments */
+    --sidebar-background: 24 20% 15%; /* Darker, desaturated orange for sidebar */
+    --sidebar-foreground: 0 0% 90%; /* Light text for dark sidebar */
+    
+    --sidebar-primary: 24 100% 55%; /* Vibrant Orange for active/hover items */
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 24 30% 25%; /* Slightly lighter than sidebar bg for hover */
+    --sidebar-accent-foreground: 0 0% 95%;
+    
+    --sidebar-border: 24 20% 20%;
+    --sidebar-ring: 24 100% 55%;
+  }
+
+  .dark {
+    /* For dark mode, we can invert or use a different scheme if needed.
+       For now, let's make it a darker version of the orange theme. */
+    --background: 24 30% 12%; /* Dark orange-brown */
+    --foreground: 0 0% 95%; /* Light text */
+
+    --card: 24 30% 18%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 24 30% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 24 100% 60%; /* Slightly brighter orange for dark mode */
+    --primary-foreground: 24 10% 10%;
+
+    --secondary: 38 100% 55%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 24 30% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 38 100% 60%;
+    --accent-foreground: 24 10% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 24 30% 30%;
+    --input: 24 30% 22%;
+    --ring: 24 100% 60%;
+
+    /* Sidebar dark theme - can be similar to light if sidebar is already dark */
+    --sidebar-background: 24 20% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    
+    --sidebar-primary: 24 100% 60%;
+    --sidebar-primary-foreground: 24 10% 10%;
+
+    --sidebar-accent: 24 30% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    
+    --sidebar-border: 24 20% 15%;
+    --sidebar-ring: 24 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+  }
+}
