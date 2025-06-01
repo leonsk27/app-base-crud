@@ -11,13 +11,16 @@ export const prismaUserRepository: UserRepository = {
   async getById(id) {
     return prisma.user.findUnique({ where: { id } });
   },
-    async getByEmailAndName(email, name) {
+  async getByEmailAndName(email, name) {
+    console.log("TESTING IMPLEMENT EMAIL", email);
+    console.log("TESTING IMPLEMENT NAME", name);
     const user = await prisma.user.findFirst({
       where: {
         email: email.toLowerCase(),
-        name: name.toLowerCase(),
+        name: name,
       },
     });
+    console.log("TESTING IMPLEMENT LOGIN", user);
     if (!user) return null;
     return {
       id: user.id,

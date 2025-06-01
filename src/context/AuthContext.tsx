@@ -1,12 +1,12 @@
 
 "use client";
 
-import type { AuthUser } from "@/lib/types";
+import type { User } from "@/domain/user.model";
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 interface AuthContextType {
-  user: AuthUser | null;
-  login: (user: AuthUser) => void;
+  user: User | null;
+  login: (user: User) => void;
   logout: () => void;
   isLoading: boolean;
 }
@@ -14,7 +14,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(false);
   }, []);
 
-  const login = (userData: AuthUser) => {
+  const login = (userData: User) => {
     localStorage.setItem("currentUser", JSON.stringify(userData));
     setUser(userData);
   };

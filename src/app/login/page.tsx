@@ -7,11 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from '@/context/AuthContext';
-import type { AuthUser } from '@/lib/types';
 import { LogIn, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { getUserByEmailAndName } from '@/app/login/actions';
+import { User } from '@/generated/prisma';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -32,8 +32,9 @@ export default function LoginPage() {
 
     try {
       const foundUser = await getUserByEmailAndName(email, name);
+      console.log("MY USER LOGIN", foundUser);
       if (foundUser) {
-        const authUser: AuthUser = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
+        const authUser: User = { id: foundUser.id, name: foundUser.name, email: foundUser.email };
         login(authUser);
         router.push('/');
       } else {

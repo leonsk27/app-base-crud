@@ -6,8 +6,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { AlertTriangle, ArrowLeft, ShoppingBag, User as UserIcon, CalendarDays, Hash, DollarSign, Package, Edit } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { MOCK_USERS } from '@/lib/constants';
-import type { Product } from '@/lib/types';
+import type { Product } from '@/domain/product.model';
+import { getUserById } from '@/app/login/actions';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,6 +26,7 @@ interface EnrichedOrderProduct {
 export default async function ViewOrderPage({ params }: ViewOrderPageProps) {
   const { id } = params;
   const order = (await getOrderById(id)).data;
+  const user = (await getUserById(order?.userId!));
 
   if (!order) {
     return (
@@ -45,7 +46,7 @@ export default async function ViewOrderPage({ params }: ViewOrderPageProps) {
     );
   }
 
-  const customerName = MOCK_USERS.find(u => u.id === order.userId)?.name || 'Desconocido';
+  const customerName = user?.name;
   
   const enrichedProducts: EnrichedOrderProduct[] = await Promise.all(
     order.products.map(async (item) => {
@@ -109,7 +110,7 @@ export default async function ViewOrderPage({ params }: ViewOrderPageProps) {
             <div>
                 <h4 className="font-semibold text-muted-foreground mb-1">Información del Cliente:</h4>
                 <p><UserIcon className="inline mr-1 h-4 w-4" /> {customerName}</p>
-                <p className="text-sm text-muted-foreground">{MOCK_USERS.find(u => u.id === order.userId)?.email}</p>
+                <p className="text-sm text-muted-foreground">{user?.email}</p>
             </div>
             <div className="text-right md:text-left"> {/* Adjusted alignment */}
                 <h4 className="font-semibold text-muted-foreground mb-1">Resumen de Pago:</h4>

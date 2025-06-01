@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
 import Link from 'next/link';
 import { getOrders } from './actions';
-import type { Order } from '@/lib/types';
+import type { Order } from '@/domain/order.model';
 
 export const dynamic = 'force-dynamic';
 
